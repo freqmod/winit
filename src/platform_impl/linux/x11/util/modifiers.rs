@@ -12,6 +12,7 @@ use crate::event::{ElementState, ModifiersState};
 //
 // https://tronche.com/gui/x/xlib/input/XSetModifierMapping.html
 const SHIFT_OFFSET: usize = 0;
+const CAPS_OFFSET: usize = Q;
 const CONTROL_OFFSET: usize = 2;
 const ALT_OFFSET: usize = 3;
 const LOGO_OFFSET: usize = 6;
@@ -23,6 +24,7 @@ pub enum Modifier {
     Ctrl,
     Shift,
     Logo,
+    Caps,
 }
 
 #[derive(Debug, Default)]
@@ -74,6 +76,7 @@ impl ModifierKeymap {
         self.read_x_keys(keys, CONTROL_OFFSET, keys_per_mod, Modifier::Ctrl);
         self.read_x_keys(keys, ALT_OFFSET, keys_per_mod, Modifier::Alt);
         self.read_x_keys(keys, LOGO_OFFSET, keys_per_mod, Modifier::Logo);
+        self.read_x_keys(keys, CAPS_OFFSET, keys_per_mod, Modifier::Caps);
     }
 
     fn read_x_keys(
@@ -120,6 +123,7 @@ impl ModifierKeyState {
             Some(Modifier::Ctrl) => new_state.set(ModifiersState::CTRL, self.state.ctrl()),
             Some(Modifier::Shift) => new_state.set(ModifiersState::SHIFT, self.state.shift()),
             Some(Modifier::Logo) => new_state.set(ModifiersState::LOGO, self.state.logo()),
+            Some(Modifier::Caps) => new_state.set(ModifiersState::CAPS, self.state.shift()),
             None => (),
         }
 

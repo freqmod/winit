@@ -56,7 +56,7 @@ pub fn get_key_mods() -> ModifiersState {
         ModifiersState::LOGO,
         key_pressed(VK_LWIN) || key_pressed(VK_RWIN),
     );
-    mods
+    mods.set(ModifiersState::CAPS, key_pressed(VK_CAPITAL));
 }
 
 bitflags! {

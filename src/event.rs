@@ -1311,6 +1311,9 @@ impl ModifiersState {
     pub fn logo(&self) -> bool {
         self.intersects(Self::LOGO)
     }
+    pub fn caps(&self) -> bool {
+        self.intersects(Self::CAPS)
+    }
 }
 
 bitflags! {
@@ -1337,6 +1340,7 @@ bitflags! {
         const LOGO = 0b100 << 9;
         // const LLOGO = 0b010 << 9;
         // const RLOGO = 0b001 << 9;
+        const CAPS = 0b1 << 10;
     }
 }
 

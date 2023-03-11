@@ -589,6 +589,15 @@ declare_class!(
 
             if let Some(window_event) = modifier_event(
                 event,
+                NSEventModifierFlags::NSAlphaShiftKeyMask,
+                self.state.modifiers.caps(),
+            ) {
+                self.state.modifiers.toggle(ModifiersState::CAPS);
+                self.queue_event(window_event);
+            }
+
+            if let Some(window_event) = modifier_event(
+                event,
                 NSEventModifierFlags::NSAlternateKeyMask,
                 self.state.modifiers.alt(),
             ) {

@@ -85,6 +85,7 @@ impl From<keyboard::ModifiersState> for ModifiersState {
         wl_mods.set(ModifiersState::CTRL, mods.ctrl);
         wl_mods.set(ModifiersState::ALT, mods.alt);
         wl_mods.set(ModifiersState::LOGO, mods.logo);
+        wl_mods.set(ModifiersState::CAPS, mods.caps_lock);
         wl_mods
     }
 }
