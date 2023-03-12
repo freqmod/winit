@@ -12,7 +12,7 @@ use crate::event::{ElementState, ModifiersState};
 //
 // https://tronche.com/gui/x/xlib/input/XSetModifierMapping.html
 const SHIFT_OFFSET: usize = 0;
-const CAPS_OFFSET: usize = Q;
+const CAPS_OFFSET: usize = 1;
 const CONTROL_OFFSET: usize = 2;
 const ALT_OFFSET: usize = 3;
 const LOGO_OFFSET: usize = 6;
@@ -178,6 +178,7 @@ fn get_modifier(state: &ModifiersState, modifier: Modifier) -> bool {
         Modifier::Ctrl => state.ctrl(),
         Modifier::Shift => state.shift(),
         Modifier::Logo => state.logo(),
+        Modifier::Caps => state.caps(),
     }
 }
 
@@ -187,5 +188,6 @@ fn set_modifier(state: &mut ModifiersState, modifier: Modifier, value: bool) {
         Modifier::Ctrl => state.set(ModifiersState::CTRL, value),
         Modifier::Shift => state.set(ModifiersState::SHIFT, value),
         Modifier::Logo => state.set(ModifiersState::LOGO, value),
+        Modifier::Caps => state.set(ModifiersState::CAPS, value),
     }
 }
